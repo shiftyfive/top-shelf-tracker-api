@@ -1,10 +1,12 @@
-var express = require('express');
-var router = express.Router();
-const ctrl = require('../controllers/test.js')
+const express = require('express');
+const ctrl = require('../controllers/test.js');
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+const router = express.Router();
+
+router.route('/')
+  .get(ctrl.testRoute);
+
+router.route('/:id')
+  .get(ctrl.testRoute);
 
 module.exports = router;

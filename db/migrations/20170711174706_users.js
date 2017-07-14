@@ -1,7 +1,7 @@
 
 exports.up = (knex) => {
-  knex.schema.createTable('users', (table) => {
-    table.increments('id').primary();
+  return knex.schema.createTable('users', (table) => {
+    table.increments('id');
     table.string('email').unique();
     table.string('first_name');
     table.string('last_name');
@@ -10,5 +10,5 @@ exports.up = (knex) => {
 };
 
 exports.down = (knex) => {
-  knex.schema.dropTable('users');
+  return knex.schema.dropTable('users');
 }

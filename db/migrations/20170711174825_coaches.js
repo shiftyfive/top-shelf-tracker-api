@@ -1,8 +1,8 @@
 
 exports.up = (knex) => {
-  knex.schema.createTable('coaches', (table) => {
+  return knex.schema.createTable('coaches', (table) => {
     table.increments('id').unique();
-    table.foreign('team_id').references('id').on('team');
+    table.integer('team_id').references('id').inTable('teams');
     table.string('first_name');
     table.string('last_name');
     table.string('coach_type');
@@ -10,5 +10,5 @@ exports.up = (knex) => {
 };
 
 exports.down = (knex) => {
-  knex.schema.dropTable('coaches');
+  return knex.schema.dropTable('coaches');
 };

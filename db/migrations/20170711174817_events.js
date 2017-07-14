@@ -1,9 +1,9 @@
 
 exports.up = (knex) => {
-  knex.schema.createTable('events', (table) => {
+  return knex.schema.createTable('events', (table) => {
     table.increments('id').unique();
-    table.foreign('player_id').references('id').on('players');
-    table.foreign('game_id').references('id').on('game');
+    table.integer('player_id').references('id').inTable('players');
+    table.integer('game_id').references('id').inTable('games');
     table.string('event_time');
     table.string('event_zone');
     table.string('event_type');
@@ -12,5 +12,5 @@ exports.up = (knex) => {
 };
 
 exports.down = (knex) => {
-  knex.schema.dropTable('events');
+  return knex.schema.dropTable('events');
 };

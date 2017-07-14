@@ -1,12 +1,12 @@
 
 exports.up = (knex) => {
-  knex.schema.createTable('coaches', (table) => {
+  return knex.schema.createTable('users_leagues', (table) => {
     table.increments('id').unique();
-    table.foreign('user_id').references('id').on('user');
-    table.foreign('league_id').references('id').on('league');
+    table.integer('user_id').references('id').inTable('users');
+    table.integer('league_id').references('id').inTable('leagues');
   });
 };
 
 exports.down = (knex) => {
-  knex.schema.dropTable('coaches');
+  return knex.schema.dropTable('users_leagues');
 };

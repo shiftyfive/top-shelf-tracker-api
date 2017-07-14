@@ -1,14 +1,14 @@
 
 exports.up = (knex) => {
-  knex.schema.createTable('teams', (table) => {
+  return knex.schema.createTable('teams', (table) => {
     table.increments('id').unique();
-    table.foreign('league_id').references('id').on('league');
-    table.string('team_name');
+    table.integer('league_id').references('id').inTable('leagues');
+    table.string('name');
     table.string('location');
-    table.string('arena_name')
+    table.string('arena');
   });
 };
 
 exports.down = (knex) => {
-  knex.schema.dropTable('teams');
+  return knex.schema.dropTable('teams');
 };

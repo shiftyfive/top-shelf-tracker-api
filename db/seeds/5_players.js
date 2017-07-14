@@ -1,0 +1,95 @@
+exports.seed = function (knex) {
+  return knex('players').del()
+  .then(() => {
+    return knex('players').insert([
+      {
+        id: 1,
+        team_id: 1,
+        first_name: 'Henrick',
+        last_name: 'Zetterberg',
+        jersey_number: 40,
+        position: 'Centere',
+        age: 36,
+        height: '5 ft 11in',
+        weight: 194,
+        shoots: 'Left',
+      },
+      {
+        id: 2,
+        team_id: 2,
+        first_name: 'Jonathan',
+        last_name: 'Toews',
+        jersey_number: 19,
+        position: 'Centere',
+        age: 29,
+        height: '6 ft 2in',
+        weight: 200,
+        shoots: 'Left',
+      },
+      {
+        id: 3,
+        team_id: 3,
+        first_name: 'Sidney',
+        last_name: 'Crosby',
+        jersey_number: 87,
+        position: 'Center',
+        age: 29,
+        height: '5 ft 11in',
+        weight: 200,
+        shoots: 'Left',
+      },
+      {
+        id: 4,
+        team_id: 1,
+        first_name: 'Thomas',
+        last_name: 'Tatar',
+        jersey_number: 21,
+        position: 'Left Wing',
+        age: 26,
+        weight: 176,
+        height: '5 ft 10in',
+        shoots: 'Left',
+      },
+      {
+        id: 5,
+        team_id: 4,
+        first_name: 'Kyle',
+        last_name: 'Burroughs',
+        jersey_number: 8,
+        position: 'Defencemen',
+        age: 22,
+        weight: 190,
+        height: '6 ft 4in',
+        shoots: 'Right',
+      },
+      {
+        id: 6,
+        team_id: 4,
+        first_name: 'Josh',
+        last_name: 'Ho-Sang',
+        jersey_number: 12,
+        position: 'Right Wing',
+        age: 21,
+        weight: 173,
+        height: '5 ft 9in',
+        shoots: 'right',
+      },
+      {
+        id: 7,
+        team_id: 4,
+        first_name: 'Parker',
+        last_name: 'Wothersspoon',
+        jersey_number: 43,
+        position: 'Defencemen',
+        age: 19,
+        weight: 179,
+        height: '5 ft 11in',
+        shoots: 'Left',
+      },
+    ]);
+  })
+  .then(() => {
+      return knex.raw(
+        "SELECT setval('players_id_seq', (SELECT MAX(id) FROM players));"
+      )});
+};

@@ -1,14 +1,15 @@
 
 exports.up = (knex) => {
-  knex.schema.createTable('games', (table) => {
+  return knex.schema.createTable('games', (table) => {
     table.increments('id').unique();
-    table.foreign('season_id').references('id').on('season');
-    table.foreign('home_team').references('id').on('teams');
-    table.foreign('away_team').references('id').on('teams');
-    table.datetime('date');
+    table.integer('season_id').references('id').inTable('seasons');
+    table.integer('home_team').references('id').inTable('teams');
+    table.integer('away_team').references('id').inTable('teams');
+    table.string('date');
+    table.string('start_time');
   });
 };
 
 exports.down = (knex) => {
-  knex.schema.dropTable('games');
+  return knex.schema.dropTable('games');
 };
