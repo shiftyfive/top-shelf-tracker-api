@@ -1,12 +1,12 @@
 const express = require('express');
-const ctrl = require('../controllers/test.js');
+const ctrl = require('../controllers/teams');
 
 const router = express.Router();
 
 router.route('/')
-  .get(ctrl.testRoute);
+  .get(ctrl.all);
 
 router.route('/:id')
-  .get(ctrl.testRoute);
+  .get(ctrl.single);
 
 module.exports = router;

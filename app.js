@@ -3,6 +3,8 @@ const path = require('path');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const csv = require('fast-csv');
+const fs = require('mz/fs');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -26,14 +28,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/leagues', leagues);
-app.use('/leagues/:id', seasons);
-app.use('/leagues/:id/players', players);
-app.use('/leagues/:id/teams', teams);
 app.use('/leagues/:id/seasons/:id', games);
+app.use('/leagues/:id/teams', teams);
+app.use('/leagues/:id/players', players);
+app.use('/leagues/:id', seasons);
+app.use('/leagues', leagues);
+app.use('/users', users);
 app.use('/admin', admin);
+app.use('/', index);
 
 
 // catch 404 and forward to error handler

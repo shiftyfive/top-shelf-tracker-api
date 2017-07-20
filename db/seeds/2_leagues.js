@@ -12,6 +12,16 @@ exports.seed = function (knex) {
         owner_id: 2,
         name: 'The Show',
       },
+      {
+        id: 3,
+        owner_id: 2,
+        name: 'join test 1',
+      },
+      {
+        id: 4,
+        owner_id: 2,
+        name: 'join test 2',
+      },
     ]);
   })
   .then(() => {

@@ -17,6 +17,16 @@ exports.seed = function (knex) {
         user_id: 3,
         league_id: 1,
       },
+      {
+        id: 4,
+        user_id: 1,
+        league_id: 3, 
+      },
+      {
+        id: 5,
+        user_id: 1,
+        league_id: 4
+      }
     ]);
   })
   .then(() => {
