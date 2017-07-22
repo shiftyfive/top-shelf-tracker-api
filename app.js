@@ -14,13 +14,9 @@ const games = require('./routes/games');
 const players = require('./routes/players');
 const teams = require('./routes/teams');
 const admin = require('./routes/admin');
+const login = require('./routes/login');
 
 const app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
-
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -28,13 +24,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/leagues/:id/seasons/:id', games);
+app.use('/leagues/:id/games/', games);
 app.use('/leagues/:id/teams', teams);
 app.use('/leagues/:id/players', players);
 app.use('/leagues/:id', seasons);
 app.use('/leagues', leagues);
 app.use('/users', users);
 app.use('/admin', admin);
+app.use('/login', login);
 app.use('/', index);
 
 
@@ -53,7 +50,8 @@ app.use((err, req, res, next) => {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  console.log(err)
+  res.json(err);
 });
 
 module.exports = app;

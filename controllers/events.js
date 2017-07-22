@@ -1,5 +1,9 @@
 const Resource = require('../models/shared');
 
+function all(req, res) {
+  Resource.join('events', 'game', 1).then(result =>res.json(result))
+}
+
 function create(req, res) {
   Resource.create('events', req.body).then(result => res.json(result))
   .catch((err) => {

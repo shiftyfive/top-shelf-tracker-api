@@ -6,8 +6,8 @@ class Resource {
     return db(resource);
   }
 
-  static findById(resource, id) {
-    return db(resource).where({ id });
+  static findById(resource, idNum, id = `${resource.id}` ) {
+    return db(resource).where(id, idNum);
   }
 
   static destroy(resource, id) {
@@ -31,9 +31,8 @@ class Resource {
     const primaryJTableId = primaryTable.substring(0, primaryTable.length - 1).concat('_id');
     const secondaryJTableId = secondaryTable.substring(0, secondaryTable.length - 1).concat('_id');
 
-    return db.from(primaryTable).innerJoin(junctionTable, `${primaryTable}.id`, `${junctionTlable}.${primaryJTableId}`).where(primaryJTableId, id)
+    return db.from(primaryTable).innerJoin(junctionTable, `${primaryTable}.id`, `${junctionTable}.${primaryJTableId}`).where(primaryJTableId, id)
     .innerJoin(secondaryTable, `${secondaryTable}.id`, `${secondaryJTableId}`);
   }
 }
-
 module.exports = Resource;
