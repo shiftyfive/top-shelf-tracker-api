@@ -5,8 +5,7 @@ class Resource {
   static all(resource) {
     return db(resource);
   }
-
-  static findById(resource, idNum, id = `${resource.id}` ) {
+  static findById(resource, idNum, id = `${resource.id}`) {
     return db(resource).where(id, idNum);
   }
 
@@ -14,8 +13,8 @@ class Resource {
     return db(resource).where({ id }).del();
   }
 
-  static create(resource, body) {
-    return db(resource).insert(body, '*');
+  static create(resource, data = {}) {
+    return db(resource).insert(data, '*');
   }
 
   static update(resource, id, body) {

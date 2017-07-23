@@ -1,11 +1,9 @@
-const crypto = require('crypto');
 const express = require('express');
-const ctrl = require('../controllers/test.js');
+const ctrl = require('../controllers/login.js');
 
 const router = express.Router();
 
 router.route('/')
-  .get(ctrl.testRoute)
-  .post(ctrl.testRoute);
+  .post(ctrl.createUser);
 
 module.exports = router;
