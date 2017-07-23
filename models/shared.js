@@ -33,5 +33,15 @@ class Resource {
     return db.from(primaryTable).innerJoin(junctionTable, `${primaryTable}.id`, `${junctionTable}.${primaryJTableId}`).where(primaryJTableId, id)
     .innerJoin(secondaryTable, `${secondaryTable}.id`, `${secondaryJTableId}`);
   }
+  static login(email, password) {
+    db('users').where('email', email).then((row) => {
+      if(!row) {
+        throw {
+          status: 400,
+          message: 'bad email or password'
+        };
+      }
+    })
+  }
 }
 module.exports = Resource;

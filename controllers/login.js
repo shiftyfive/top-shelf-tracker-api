@@ -1,4 +1,5 @@
 const Resource = require('../models/shared');
+const loginResouce = require('../models/login');
 const bcrypt = require('bcrypt-as-promised');
 
 
@@ -19,25 +20,21 @@ function createUser(req, res, next) {
 }
 
 function login(req, res, next) {
-  
+  const { email, password } = req.body;
+  if (!email || !email.trim() || !password) {
+    return next({
+      status: 400,
+      message: 'Email and or Password must not be blank',
+    });
+  }
+  return loginResouce.findUser(email, password)
+  .then((id) => {
+    req.session.userId = id;
+    res.send({ id });
+  })
+  .catch((err) => {
+    next(err);
+  });
 }
 
-// function login(req, res, next) {
-//   const {email, password} = req.body;
-
-//   if (!email || email.trim()) {
-//     return next({
-//       status: 400,
-//       message: 'Email must not be blank'
-//     });
-//   }
-
-//   if(!password) {
-//     return next({
-//       status: 400,
-//       message: 'Password must not be blank'
-//     });
-//   }
-// }
-
-module.exports = { createUser };
+module.exports = { createUser, login };

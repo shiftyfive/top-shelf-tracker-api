@@ -19,10 +19,6 @@ class Game {
     })
   }
 
-  static getEvents(gameId) {
-    return db('*').from('events').where('events.game_id', gameId)
-  }
-
   static join(primaryTable, secondaryTable, joinId, id) {
     return db.from(primaryTable).innerJoin(secondaryTable, `${primaryTable}.${joinId}`, `${secondaryTable}.id`).where(joinId, id);
   }
