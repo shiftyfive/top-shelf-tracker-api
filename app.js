@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
 const csv = require('fast-csv');
 const fs = require('mz/fs');
+const jwt = require('jsonwebtoken')
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -23,21 +24,24 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(cookieSession({
-  name: 'top-shelf-tracker',
-  keys: [process.env.SESSION_SECRET],
-}));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', index);
+app.use('/login', login);
+app.use((req, res, next) => {
+  jwt.verify(req.headers.authorization, process.env.JWT_SECRET, (err, result) => {
+    req.user = err ? {} : { id: result.userId }
+    if (err) return next(err);
+    next();
+  });
+});
+app.use('/leagues', leagues);
+app.use('/users', users);
+app.use('/admin', admin);
 app.use('/leagues/:id/games/', games);
 app.use('/leagues/:id/teams', teams);
 app.use('/leagues/:id/players', players);
 app.use('/leagues/:id', seasons);
-app.use('/leagues', leagues);
-app.use('/users', users);
-app.use('/admin', admin);
-app.use('/login', login);
-app.use('/', index);
 
 
 // catch 404 and forward to error handler
