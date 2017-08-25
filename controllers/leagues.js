@@ -11,4 +11,4 @@ function single(req, res) {
 
 }
 
-module.exports = { all, single };
+module.exports = { all, single }

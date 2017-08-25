@@ -1,7 +1,7 @@
 const Resource = require('../models/shared');
 
 function all(req, res) {
-  Resource.join('leagues', 'seasons', 1).then(result => console.log(result));
+  Resource.join('leagues', 'seasons', 1).then(result => res.json(result));
 }
 
 function single(req, res) {

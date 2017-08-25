@@ -8,7 +8,9 @@ router.route('/')
   .get(ctrl.all);
 
 router.route('/:id')
-  .get(ctrl.single);
+  .get(ctrl.single)
+  .post(ctrl.addEvent);
+
 
 // single game view post put & delete routes are in reference to events
 

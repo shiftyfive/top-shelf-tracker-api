@@ -7,7 +7,7 @@ class Game {
       `select games.id as game_id, games.date, games.start_time as time,
       json_agg(teams) as teams
       from teams
-      inner join games on teams.id = games.home_team or teams.id = games.away_team
+      inner join games on teams.id  = games.home_team or teams.id = games.away_team
       where games.season_id = ${seasonId}
       group by game_id
       `);
@@ -37,6 +37,10 @@ class Game {
     .join('players', function () {
       this.on('players.team_id', '=', 'games.away_team')
     }).where('games.id', gameId);
+  }
+
+  static addEvent(gameID, data = {}) {
+    return db('events').insert(data, '*');
   }
 
   static getEvents(gameId) {

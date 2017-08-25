@@ -4,10 +4,10 @@ exports.seed = function (knex) {
     return knex('users').insert([
       {
         id: 1,
-        email: 'hockeyCoach111@fastmail.com',
+        email: 'babz',
         first_name: 'Mike',
         last_name: 'Babcock',
-        password: 'hockey123',
+        password: '$2a$12$rzZ30StGcmk7kfFY5Xu8SOO4N3pwSTJACl9nnCmsa3EkL66H39JKS',
       },
       {
         id: 2,

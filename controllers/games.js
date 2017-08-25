@@ -13,7 +13,7 @@ function buildObj(arr) {
 
 
 function all(req, res) {
-  Resource.all(1).then(result => console.log(result.rows));
+  Resource.all(1).then(result => res.json(result.rows));
 }
 
 function single(req, res) {
@@ -28,5 +28,9 @@ function single(req, res) {
   });
 }
 
-module.exports = { all, single };
+function addEvent(req, res) {
+  console.log(req.body)
+}
+
+module.exports = { all, single, addEvent };
 

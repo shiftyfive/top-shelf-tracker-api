@@ -1,11 +1,6 @@
 const Resource = require('../models/shared');
 const csv = require('csvtojson');
 const db = require('../db/connection.js');
-
-
-
-
-
 const promises = [];
 
 csv()

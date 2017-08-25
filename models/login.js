@@ -13,8 +13,7 @@ class Login {
       }
       return bcrypt.compare(password, row[0].password)
       .then(() => {
-        console.log(row[0])
-        return row[0].id;
+        return row[0];
       });
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
