@@ -5,7 +5,7 @@ exports.up = (knex) => {
     table.string('email').unique();
     table.string('first_name');
     table.string('last_name');
-    table.specificType('hashed_password', 'char(60)').notNullable();
+    table.specificType('password', 'char(60)').notNullable();
   });
 };
 

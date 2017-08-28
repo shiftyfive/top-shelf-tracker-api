@@ -5,6 +5,10 @@ class Resource {
   static all(resource) {
     return db(resource);
   }
+  static allById(resource, resourceId, queryId) {
+    return db(resource).where(resourceId, queryId);
+  }
+
   static findById(resource, idNum, id = `${resource.id}`) {
     return db(resource).where(id, idNum);
   }

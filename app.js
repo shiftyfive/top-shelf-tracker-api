@@ -10,13 +10,10 @@ const jwt = require('jsonwebtoken')
 const cors = require('cors')
 
 const index = require('./routes/index');
-const users = require('./routes/users');
-const leagues = require('./routes/leagues');
 const seasons = require('./routes/seasons');
 const games = require('./routes/games');
 const players = require('./routes/players');
 const teams = require('./routes/teams');
-const admin = require('./routes/admin');
 const login = require('./routes/login');
 const registration = require('./routes/registration');
 
@@ -39,10 +36,8 @@ app.use('/login/registration', registration)
 //     next();
 //   });
 // });
-// app.use('/api/leagues', leagues);
-app.use('/api/users', users);
-app.use('/api/admin', admin);
-app.use('/api/leagues/:id/games/', games);
+app.use('/api', seasons);
+app.use('/api/:id/games/', games);
 app.use('/api/leagues/:id/teams', teams);
 app.use('/api/leagues/:id/players', players);
 app.use('/api/leagues/:id', seasons);

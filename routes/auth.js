@@ -1,9 +1,9 @@
 const express = require('express');
-const ctrl = require('../controllers/teams');
+const ctrl = require('../controllers/Auth');
 
 const router = express.Router();
 
-router.route('/:id')
-  .get(ctrl.all);
+router.route('/')
+  .get(ctrl.testRoute);
 
 module.exports = router;

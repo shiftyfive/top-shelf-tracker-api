@@ -13,7 +13,7 @@ function buildObj(arr) {
 
 
 function all(req, res) {
-  Resource.all(1).then(result => res.json(result.rows));
+  Resource.all(req.params.seasonId).then(result => res.json(result.rows));
 }
 
 function single(req, res) {
