@@ -7,10 +7,9 @@ const router = express.Router();
 router.route('/:seasonId')
   .get(ctrl.all);
 
-router.route('/:id')
+router.route('/:seasonId/:gameId')
   .get(ctrl.single)
   .post(ctrl.addEvent);
-
 
 // single game view post put & delete routes are in reference to events
 

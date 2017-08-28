@@ -12,6 +12,7 @@ const cors = require('cors')
 const index = require('./routes/index');
 const seasons = require('./routes/seasons');
 const games = require('./routes/games');
+const events = require('./routes/games');
 const players = require('./routes/players');
 const teams = require('./routes/teams');
 const login = require('./routes/login');
