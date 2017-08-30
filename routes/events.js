@@ -1,11 +1,9 @@
 const express = require('express');
-const ctrl = require('../controllers/events');
 const test = require('../controllers/test')
 
 const router = express.Router();
 
-router.route('/')
-  .post(ctrl.create)
-  .put(ctrl.update);
+router.route('/events')
+  .get(test.testRoute);
 
 module.exports = router;
