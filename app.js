@@ -4,7 +4,6 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
-const fs = require('mz/fs');
 const jwt = require('jsonwebtoken')
 const cors = require('cors')
 
