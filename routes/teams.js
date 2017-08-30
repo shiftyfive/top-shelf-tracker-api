@@ -3,7 +3,7 @@ const ctrl = require('../controllers/teams');
 
 const router = express.Router();
 
-router.route('/:id')
+router.route('/')
   .get(ctrl.all);
 
 module.exports = router;

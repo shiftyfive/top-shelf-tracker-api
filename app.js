@@ -38,9 +38,9 @@ app.use('/login/registration', registration)
 //   });
 // });
 app.use('/api', seasons);
-app.use('/api', events)
+app.use('/api', events);
+app.use('/api/:seasonId/teams/:ownerId', teams);
 app.use('/api/:id/games/', games);
-app.use('/api/leagues/:id/teams', teams);
 app.use('/api/leagues/:id/players', players);
 app.use('/api/leagues/:id', seasons);
 

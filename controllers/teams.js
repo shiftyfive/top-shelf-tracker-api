@@ -2,10 +2,9 @@ const Resource = require('../models/shared');
 
 
 function all(req, res) {
-  Resource.join('leagues', 'teams', 1).then(result => console.log(result));
+  console.log(req.params)
+  const id = req.params.ownerId;
+  Resource.allById('teams', 'owner_id', id);
 }
 
-function single(req, res) {
-  Resource.join('teams', 'players', 1).then(result => console.log(result));
-}
-module.exports = { all, single };
+module.exports = { all };

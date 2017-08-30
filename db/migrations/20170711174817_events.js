@@ -5,6 +5,8 @@ exports.up = (knex) => {
     table.boolean('open');
     table.integer('player_id').references('id').inTable('players');
     table.integer('game_id').references('id').inTable('games');
+    table.string('player_name');
+    table.string('jersey_number');
     table.integer('period');
     table.string('event_time');
     table.string('event_zone');

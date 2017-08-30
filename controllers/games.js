@@ -29,8 +29,8 @@ function single(req, res) {
 }
 
 function addEvent(req, res) {
-  console.log(req.body, 'logging from API req.body in reference to request made by events form')
-  Resource.addEvent(req.body)
+  console.log(req.body, 'req.body from add event controller function')
+  Resource.addEvent(req.body);
 }
 //you removed single put it back
 module.exports = { all, single, addEvent };

@@ -39,8 +39,8 @@ class Game {
     }).where('games.id', gameId);
   }
 
-  static addEvent(data = {}) {
-    return db('events').insert(data, '*');
+  static addEvent(data) {
+    return db('events').insert(data, '*')
   }
 
   static getEvents(gameId) {
