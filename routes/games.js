@@ -3,7 +3,6 @@ const ctrl = require('../controllers/games');
 
 const router = express.Router();
 
-// all games
 router.route('/:seasonId')
   .get(ctrl.all);
 

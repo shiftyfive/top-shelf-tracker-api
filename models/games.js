@@ -39,12 +39,12 @@ class Game {
     }).where('games.id', gameId);
   }
 
-  static addEvent(gameID, data = {}) {
+  static addEvent(data = {}) {
     return db('events').insert(data, '*');
   }
 
   static getEvents(gameId) {
-    return db.select('games.id as game_id', 'events.id as event_id', 'events.player_id', 'events.event_time', 'events.event_zone', 'events.event_type', 'events.result')
+    return db.select('games.id as game_id', 'events.id as event_id', 'events.player_id', 'events.event_time', 'events.event_zone', 'events.event_type', 'events.result', 'events.player_name', 'events.jersey_number')
     .from('games')
     .join('events', 'games.id', 'events.game_id').where('games.id', gameId);
   }
