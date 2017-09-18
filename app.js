@@ -35,12 +35,11 @@ app.use('/login/registration', registration)
 //     next();
 //   });
 // });
-app.use('/api', seasons);
-app.use('/api', events);
-app.use('/api/:seasonId/teamsheroku create/:ownerId', teams);
+// app.use('/api', events);
 app.use('/api/:id/games/', games);
-app.use('/api/leagues/:id/players', players);
-app.use('/api/leagues/:id', seasons);
+app.use('/api/:seadonId/players', players);
+app.use('/api/:seasonId/teams', teams);
+app.use('/api', seasons);
 
 
 // catch 404 and forward to error handler

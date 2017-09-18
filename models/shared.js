@@ -9,8 +9,8 @@ class Resource {
     return db(resource).where(resourceId, queryId);
   }
 
-  static findById(resource, idNum, id = `${resource.id}`) {
-    return db(resource).where(id, idNum);
+  static findById(resource, inputId, resourceId) {
+    return db(resource).where(resourceId, inputId);
   }
 
   static destroy(resource, id) {

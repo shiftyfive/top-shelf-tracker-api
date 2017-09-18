@@ -14,10 +14,10 @@ function eventsByPeriod(arr) {
     if (arr[i].period === 3) {
       periodArr[2].push(arr[i]);
     }
-    if (arr[i].period === 'OT') {
+    if (arr[i].period === 4) {
       periodArr[3].push(arr[i]);
     }
-    if (arr[i].period === 'SO') {
+    if (arr[i].period === 5) {
       periodArr[4].push(arr[i]);
     }
   }
@@ -29,7 +29,10 @@ function buildObj(arr) {
   const gameObj = {};
   gameObj.homeTeam = arr[0][0];
   gameObj.awayTeam = arr[1][0]; 
-  gameObj.players = arr[2].concat(arr[3]);
+  gameObj.players = arr[2].concat(arr[3]).map((player) => {
+    player.fullName = player.first_name + ' ' + player.last_name;
+    return player
+  });
   gameObj.awayTeam.players = arr[3];
   gameObj.events = eventsByPeriod(arr[4]);
   return gameObj;
@@ -47,13 +50,12 @@ function single(req, res) {
     Resource.getAwayTeamPlayers(1),
     Resource.getEvents(1),
   ]).then((data) => {
-    res.json(buildObj(data))
+    res.json(buildObj(data));
   });
 }
 
 function addEvent(req, res) {
-  console.log(req.body, 'req.body from add event controller function')
-  Resource.addEvent(req.body);
+  Resource.addEvent(req.body).then(console.log(res.json));
 }
 //you removed single put it back
 module.exports = { all, single, addEvent };
