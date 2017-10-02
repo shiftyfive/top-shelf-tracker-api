@@ -19,7 +19,7 @@ exports.seed = function (knex) {
     ]);
   })
   .then(() => {
-      return knex.raw(
+    return knex.raw(
         "SELECT setval('seasons_id_seq', (SELECT MAX(id) FROM seasons));"
-      )});
+  )});
 };

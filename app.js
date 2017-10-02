@@ -29,13 +29,13 @@ app.use(cors());
 app.use('/', index);
 app.use('/login', login);
 app.use('/login/registration', registration);
-app.use((req, res, next) => {
-  jwt.verify(req.headers.authorization, process.env.JWT_SECRET, (err, result) => {
-    req.user = err ? {} : { id: result.userId };
-    if (err) return next(err);
-    next();
-  });
-});
+// app.use((req, res, next) => {
+//   jwt.verify(req.headers.authorization, process.env.JWT_SECRET, (err, result) => {
+//     req.user = err ? {} : { id: result.userId };
+//     if (err) return next(err);
+//     next();
+//   });
+// });
 app.use('/api/:id/games/', games);
 app.use('/api/:seadonId/players', players);
 app.use('/api/:seasonId/teams', teams);
