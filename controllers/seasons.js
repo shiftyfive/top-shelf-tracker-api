@@ -2,7 +2,7 @@ const Resource = require('../models/shared');
 
 
 function all(req, res) {
-  Resource.allById('seasons', 'owner_id', req.params.ownerId).then(result => res.json(result));
+  Resource.allById('seasons', 'owner_id', 1).then(result => res.json(result));
 }
 
 function create(req, res) {

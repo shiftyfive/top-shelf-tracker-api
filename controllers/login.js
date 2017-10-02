@@ -35,7 +35,6 @@ function login(req, res, next) {
     const claim = { userId: row.id };
     const expires = { expiresIn: '30 days' };
     const token = jwt.sign(claim, process.env.JWT_SECRET, expires);
-    console.log(token)
     return res.send({ token, userId: row.id });
   })
   .catch((err) => {
