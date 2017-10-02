@@ -12,12 +12,4 @@ router.route('/:seasonId/:gameId')
 
 // single game view post put & delete routes are in reference to events
 
-// router.route('/:id')
-//   .get(testCtrl.testRoute)
-//   .post(eventsCtrl.create)
-//   .put(eventsCtrl.update);
-
-// router.route('/:id/boxscore')
-//   .get(testCtrl.testRoute);
-
 module.exports = router;

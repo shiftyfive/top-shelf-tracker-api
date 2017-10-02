@@ -14,6 +14,7 @@ const events = require('./routes/games');
 const players = require('./routes/players');
 const teams = require('./routes/teams');
 const login = require('./routes/login');
+const settings = require('./routes/settings');
 const registration = require('./routes/registration');
 
 const app = express();
@@ -27,7 +28,7 @@ app.use(cors());
 
 app.use('/', index);
 app.use('/login', login);
-app.use('/login/registration', registration)
+app.use('/login/registration', registration);
 // app.use((req, res, next) => {
 //   jwt.verify(req.headers.authorization, process.env.JWT_SECRET, (err, result) => {
 //     req.user = err ? {} : { id: result.userId };
@@ -39,6 +40,7 @@ app.use('/login/registration', registration)
 app.use('/api/:id/games/', games);
 app.use('/api/:seadonId/players', players);
 app.use('/api/:seasonId/teams', teams);
+app.use('/api/:seasonId/settings', settings);
 app.use('/api', seasons);
 
 

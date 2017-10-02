@@ -26,6 +26,7 @@ function eventsByPeriod(arr) {
 
 
 function buildObj(arr) {
+  console.log(arr, 'logging arr argument in buildobj function')
   const gameObj = {};
   gameObj.homeTeam = arr[0][0];
   gameObj.awayTeam = arr[1][0]; 
@@ -43,12 +44,13 @@ function all(req, res) {
 }
 
 function single(req, res) {
+  const gameId = req.params.gameId;
   Promise.all([
     Resource.join('games', 'teams', 'home_team', 1),
     Resource.join('games', 'teams', 'away_team', 2),
-    Resource.getHomeTeamPlayers(1),
-    Resource.getAwayTeamPlayers(1),
-    Resource.getEvents(1),
+    Resource.getHomeTeamPlayers(gameId),
+    Resource.getAwayTeamPlayers(gameId),
+    Resource.getEvents(gameId),
   ]).then((data) => {
     res.json(buildObj(data));
   });
