@@ -26,16 +26,12 @@ function eventsByPeriod(arr) {
 
 
 function buildObj(arr) {
-  console.log(arr, 'logging arr argument in buildobj function')
   const gameObj = {};
-  gameObj.homeTeam = arr[0][0];
-  gameObj.awayTeam = arr[1][0]; 
-  gameObj.players = arr[2].concat(arr[3]).map((player) => {
+  gameObj.players = arr[0].concat(arr[1]).map((player) => {
     player.fullName = player.first_name + ' ' + player.last_name;
     return player
   });
-  gameObj.awayTeam.players = arr[3];
-  gameObj.events = eventsByPeriod(arr[4]);
+  gameObj.events = eventsByPeriod(arr[2]);
   return gameObj;
 }
 
@@ -45,9 +41,8 @@ function all(req, res) {
 
 function single(req, res) {
   const gameId = req.params.gameId;
+  console.log(req.params.gameId, 'logging req.params.gameId from single controller function.');
   Promise.all([
-    Resource.join('games', 'teams', 'home_team', 1),
-    Resource.join('games', 'teams', 'away_team', 2),
     Resource.getHomeTeamPlayers(gameId),
     Resource.getAwayTeamPlayers(gameId),
     Resource.getEvents(gameId),
@@ -59,6 +54,11 @@ function single(req, res) {
 function addEvent(req, res) {
   Resource.addEvent(req.body).then(console.log(res.json));
 }
+
+function deleteEvent(req, res) {
+  console.log(req.params, 'logging req.params from deleteEvent ctroller')
+  sharedResource.destroy('events', req.params.eventId).then(result => res.json(result));
+}
 //you removed single put it back
-module.exports = { all, single, addEvent };
+module.exports = { all, single, addEvent, deleteEvent };
 
